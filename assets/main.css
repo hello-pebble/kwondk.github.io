@@ -41,11 +41,23 @@ body {
 
 .page-content {
   flex: 1;
-  margin-left: 250px; /* 사이드바 너비만큼 본문을 오른쪽으로 밀어냅니다 */
-  padding: 40px 60px;
+  margin-left: 250px;
+  padding: 60px 80px; /* 본문 여백을 넓혀서 가독성 확보 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px; /* 가독성을 위한 최적의 너비 */
+  margin-left: 0;   /* 중앙 정렬 대신 왼쪽 정렬하여 사이드바와의 간격 최적화 */
+  flex: 1;
+}
+
+.site-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #888;
+  font-size: 0.9em;
 }
