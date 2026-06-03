@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; {{ "now" | date: "%Y" }} {{ site.title | escape }}. All rights reserved.</p>
+    {% if site.email %}
+    <p>Contact: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    {% endif %}
+  </div>
+</footer>

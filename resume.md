@@ -5,4 +5,7 @@ permalink: /resume/
 ---
 
 # 이력서
-여기에 이력서 내용을 작성해 주세요.
+
+{% highlight ruby %} def print_hi(name) puts "Hi, #{name}" end print_hi('Tom') #=> prints 'Hi, Tom' to STDOUT. {% endhighlight %}
+
+Check out the Jekyll docs for more info on how to get the most out of Jekyll.
