@@ -9,6 +9,6 @@ twitter_username: jekyllrb
 github_username:  hello-pebble
 
 # Build settings
-theme: minima
+# theme: minima
 plugins:
   - jekyll-feed
