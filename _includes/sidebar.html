@@ -1,20 +1,39 @@
 <div class="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">dada</span>
+    <span class="sidebar-tagline">backend developer</span>
+  </div>
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
-    <a class="sidebar-nav-item{% if page.url == '/resume/' %} active{% endif %}" href="{{ '/resume/' | relative_url }}">이력서</a>
-    <a class="sidebar-nav-item{% if page.url == '/portfolio/' %} active{% endif %}" href="{{ '/portfolio/' | relative_url }}">포트폴리오</a>
+    <a class="sidebar-nav-item{% if page.url == '/' or page.url == '/resume/' %} active{% endif %}" href="{{ '/' | relative_url }}">이력서</a>
+    
+    <div class="sidebar-nav-group">
+      <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}" href="javascript:void(0)" id="portfolio-toggle">포트폴리오</a>
+      <div class="sidebar-submenu" id="portfolio-submenu">
+        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/1/' | relative_url }}">포트폴리오 1</a>
+        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/2/' | relative_url }}">포트폴리오 2</a>
+        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/3/' | relative_url }}">포트폴리오 3</a>
+        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/4/' | relative_url }}">포트폴리오 4</a>
+        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/5/' | relative_url }}">포트폴리오 5</a>
+      </div>
+    </div>
+
     <a class="sidebar-nav-item{% if page.url == '/study/' %} active{% endif %}" href="{{ '/study/' | relative_url }}">스터디</a>
   </nav>
-  <button id="theme-toggle" class="theme-toggle">Dark Mode</button>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">DARK</button>
 </div>
 
 <script>
   const toggle = document.getElementById('theme-toggle');
+  const portfolioToggle = document.getElementById('portfolio-toggle');
+  const portfolioSubmenu = document.getElementById('portfolio-submenu');
   const currentTheme = localStorage.getItem('theme') || 'light';
   
+  // Theme Toggle Logic
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    toggle.textContent = 'Light Mode';
+    toggle.textContent = 'LIGHT';
+  } else {
+    toggle.textContent = 'DARK';
   }
 
   toggle.addEventListener('click', () => {
@@ -22,11 +41,23 @@
     if (theme === 'dark') {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme', 'light');
-      toggle.textContent = 'Dark Mode';
+      toggle.textContent = 'DARK';
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
-      toggle.textContent = 'Light Mode';
+      toggle.textContent = 'LIGHT';
     }
   });
+
+  // Portfolio Submenu Toggle Logic
+  portfolioToggle.addEventListener('click', () => {
+    portfolioSubmenu.classList.toggle('show');
+    portfolioToggle.classList.toggle('open');
+  });
+
+  // Keep submenu open if active
+  if (window.location.pathname.includes('/portfolio')) {
+    portfolioSubmenu.classList.add('show');
+    portfolioToggle.classList.add('open');
+  }
 </script>

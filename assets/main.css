@@ -1,19 +1,23 @@
 :root {
   --bg-color: #ffffff;
-  --text-color: #333333;
-  --sidebar-bg: #2c3e50;
-  --sidebar-text: #bdc3c7;
-  --sidebar-active: #ffffff;
+  --text-color: #000000;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #666666;
+  --sidebar-active: #000000;
   --border-color: #eeeeee;
+  --toggle-bg: #000000;
+  --toggle-text: #ffffff;
 }
 
 [data-theme="dark"] {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
+  --bg-color: #000000;
+  --text-color: #ffffff;
   --sidebar-bg: #000000;
-  --sidebar-text: #888888;
+  --sidebar-text: #999999;
   --sidebar-active: #ffffff;
   --border-color: #333333;
+  --toggle-bg: #ffffff;
+  --toggle-text: #000000;
 }
 
 body {
@@ -25,6 +29,11 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
 .wrapper {
   display: flex;
   min-height: 100vh;
@@ -33,19 +42,44 @@ body {
 .sidebar {
   width: 200px;
   background-color: var(--sidebar-bg);
-  color: white;
+  border-right: 1px solid var(--border-color);
+  color: var(--text-color);
   position: fixed;
   height: 100vh;
   padding: 40px 20px;
   box-sizing: border-box;
   z-index: 100;
   transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 20px;
+}
+
+.sidebar-header {
+  margin-bottom: 5px;
+  padding: 0 4px;
+}
+
+.sidebar-title {
+  color: var(--text-color);
+  font-size: 1.5em;
+  font-weight: bold;
+  display: block;
+  line-height: 1.2;
+}
+
+.sidebar-tagline {
+  display: block;
+  font-size: 0.8em;
+  font-weight: normal;
+  margin-top: 2px;
+  color: var(--sidebar-text);
 }
 
 .sidebar-nav-item {
@@ -53,31 +87,55 @@ body {
   color: var(--sidebar-text);
   font-size: 1.1em;
   padding: 8px 4px;
-  margin: 0 8px;
-  border-bottom: 2px solid transparent;
   transition: all 0.3s;
+  display: inline-block;
 }
 
 .sidebar-nav-item:hover, .sidebar-nav-item.active {
   color: var(--sidebar-active);
-  border-bottom: 2px solid var(--sidebar-active);
+  font-weight: bold;
+}
+
+.sidebar-nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-submenu {
+  display: none;
+  flex-direction: column;
+  padding-left: 15px;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.sidebar-submenu.show {
+  display: flex;
+}
+
+.submenu-item {
+  font-size: 0.9em;
+  padding: 4px;
+  color: var(--sidebar-text);
+}
+
+.submenu-item:hover, .submenu-item.active {
+  color: var(--sidebar-active);
 }
 
 .theme-toggle {
-  margin-top: 30px;
-  padding: 10px;
-  background: none;
-  border: 1px solid var(--sidebar-text);
-  color: var(--sidebar-text);
+  margin-top: auto;
+  padding: 5px 15px;
+  background-color: var(--toggle-bg);
+  color: var(--toggle-text);
+  border: 1px solid var(--toggle-bg);
   cursor: pointer;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.8em;
+  font-weight: bold;
   transition: all 0.3s;
-}
-
-.theme-toggle:hover {
-  color: white;
-  border-color: white;
+  align-self: center;
+  text-transform: uppercase;
 }
 
 .page-content {
@@ -87,6 +145,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .main-content {
@@ -99,7 +158,7 @@ body {
   margin-top: 60px;
   padding-top: 20px;
   border-top: 1px solid var(--border-color);
-  color: #888;
+  color: var(--sidebar-text);
   font-size: 0.9em;
 }
 
@@ -113,24 +172,32 @@ body {
     width: 100%;
     height: auto;
     position: relative;
-    padding: 20px;
+    padding: 30px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-header {
+    margin-bottom: 20px;
   }
 
   .sidebar-nav {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 0;
   }
 
   .sidebar-nav-item {
     font-size: 1em;
-    margin: 0 4px;
+    margin: 0;
+    padding: 5px 10px;
   }
 
   .theme-toggle {
-    margin: 15px auto 0;
-    display: block;
+    margin: 20px auto 0;
+    display: flex;
   }
 
   .page-content {
